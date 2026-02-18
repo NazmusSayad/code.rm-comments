@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "build": "tsdown && vsce package --no-dependencies",
     "watch": "tsdown --watch",
@@ -13,7 +13,7 @@
   "main": "./dist/extension.cjs",
   "browser": "./dist/extension.cjs",
   "engines": {
-    "vscode": "^1.109.0"
+    "vscode": "^1.100.0"
   },
   "type": "module",
   "categories": [
