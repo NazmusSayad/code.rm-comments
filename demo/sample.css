@@ -1,0 +1,5 @@
+/* remove this css comment */
+body {
+  color: #222; /* inline css comment */
+  background: #f8f8f8;
+}

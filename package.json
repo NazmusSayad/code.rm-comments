@@ -1,0 +1,163 @@
+{
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsdown && vsce package --no-dependencies",
+    "watch": "tsdown --watch",
+    "test": "vitest run"
+  },
+  "name": "rm-comments",
+  "publisher": "NazmusSayad",
+  "displayName": "Remove Comments",
+  "description": "Remove all comments from your code.",
+  "license": "MIT",
+  "main": "./dist/extension.cjs",
+  "browser": "./dist/extension.cjs",
+  "engines": {
+    "vscode": "^1.109.0"
+  },
+  "type": "module",
+  "categories": [
+    "Other"
+  ],
+  "icon": "images/icon.png",
+  "keywords": [
+    "comment",
+    "comments",
+    "delete",
+    "remove",
+    "extract",
+    "strings"
+  ],
+  "galleryBanner": {
+    "color": "#22252c",
+    "theme": "dark"
+  },
+  "contributes": {
+    "configuration": {
+      "title": "Remove Comments",
+      "properties": {
+        "rm-comments.c99": {
+          "type": "boolean",
+          "description": "Use c99+ comments. // added.",
+          "scope": "resource",
+          "default": false
+        },
+        "rm-comments.removeBlankLines.before": {
+          "type": "integer",
+          "description": "Remove up to N blank lines before a removed comment.",
+          "scope": "resource",
+          "default": 0
+        },
+        "rm-comments.removeBlankLines.after": {
+          "type": "integer",
+          "description": "Remove up to N blank lines after a removed comment.",
+          "scope": "resource",
+          "default": 0
+        },
+        "rm-comments.extractStrings.filePath": {
+          "type": "string",
+          "description": "Full path of the file to store the extracted strings.",
+          "scope": "resource"
+        },
+        "rm-comments.extractStrings.lineJoin": {
+          "type": "string",
+          "description": "For multi line strings replace the line separator with this string.",
+          "default": "@@@@",
+          "scope": "resource"
+        },
+        "rm-comments.keep": {
+          "type": [
+            "object",
+            "boolean"
+          ],
+          "description": "define named regular expressions that test comments to keep, if set to false override User/Workspace setting. Object key: languageId or \"all\"",
+          "scope": "resource",
+          "default": {},
+          "patternProperties": {
+            "^.+$": {
+              "type": [
+                "object",
+                "boolean"
+              ],
+              "description": "for languageId or \"all\": named regular expressions that test comments to keep, if set to false override User/Workspace setting for this languageId or \"all\"",
+              "patternProperties": {
+                "^.+$": {
+                  "type": [
+                    "object",
+                    "boolean"
+                  ],
+                  "description": "named regular expressions that test comments to keep, if set to false override User/Workspace setting for this named regex",
+                  "properties": {
+                    "regex": {
+                      "type": "string",
+                      "description": "regular expression to search for in the comment text"
+                    },
+                    "flags": {
+                      "type": "string",
+                      "description": "(Optional) string with the regex flags \"i\" (default: \"\")"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "rm-comments.extractStrings",
+        "title": "Extract Strings to a file",
+        "category": "Comments"
+      },
+      {
+        "command": "rm-comments.ignoreKeepCommentSetting",
+        "title": "Ignore any \"rm-comments.keep\" setting. For next removal only.",
+        "category": "Comments"
+      },
+      {
+        "command": "rm-comments.markJSDocStringAsComment",
+        "title": "Mark JSDOC String as comment. For next removal only.",
+        "category": "Comments"
+      },
+      {
+        "command": "rm-comments.removeAllComments",
+        "title": "Remove All Comments",
+        "category": "Comments"
+      },
+      {
+        "command": "rm-comments.removeAllCommentsWithPrefix",
+        "title": "Remove All Comments that have a user entered prefix",
+        "category": "Comments"
+      },
+      {
+        "command": "rm-comments.removeSingleLineComments",
+        "title": "Remove All Single Line Comments",
+        "category": "Comments"
+      },
+      {
+        "command": "rm-comments.removeMultilineComments",
+        "title": "Remove All Multiline Comments",
+        "category": "Comments"
+      }
+    ]
+  },
+  "homepage": "https://github.com/NazmusSayad/code.rm-comments",
+  "bugs": "https://github.com/NazmusSayad/code.rm-comments/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NazmusSayad/code.rm-comments"
+  },
+  "devDependencies": {
+    "@types/assert": "^1.5.11",
+    "@types/node": "^25.2.3",
+    "@types/vscode": "^1.109.0",
+    "@vscode/vsce": "^3.7.1",
+    "tsdown": "^0.20.3",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
+  },
+  "dependencies": {
+    "tslib": "^2.8.1"
+  }
+}
