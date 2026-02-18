@@ -7,7 +7,7 @@
   },
   "name": "rm-comments",
   "publisher": "NazmusSayad",
-  "displayName": "Remove Comments",
+  "displayName": "Remove Comments (rm-comments)",
   "description": "Remove all comments from your code.",
   "license": "MIT",
   "main": "./dist/extension.cjs",
